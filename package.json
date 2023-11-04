@@ -1,0 +1,19 @@
+{
+  "name": "obstaclesv2",
+  "description": "Updated version of Obstacles Discord bot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {
+    "typescript": "^5.2.2"
+  },
+  "scripts": {
+    "build": "npx tsc"
+  },
+  "author": "pranay",
+  "license": "MIT",
+  "dependencies": {
+    "bluebird": "^3.7.2",
+    "discord.js": "^14.13.0",
+    "dotenv": "^16.3.1"
+  }
+}
