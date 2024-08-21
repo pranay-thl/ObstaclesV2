@@ -51,7 +51,7 @@ client.on('messageCreate', async message => {
           return;
       }
       let channel:any = message.channel;
-      if(channel.name === "demo") {
+      if(channel.name === "obstacles") {
         let openAIbot = commands["chat"].openAI;
         let chat = message.content.trim();
         let response = await openAIbot.parseMessage(message.author.id,chat);
