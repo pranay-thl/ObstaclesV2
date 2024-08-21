@@ -12,7 +12,7 @@ export class OpenAIBot {
             if(!this.userContext[userId]) {
                 this.userContext[userId] = [];
                 setTimeout(() => {
-                    this.userContext[userId] = [];
+                    delete this.userContext[userId];
                 }, 3600000);
             }
             this.userContext[userId].push(message);
