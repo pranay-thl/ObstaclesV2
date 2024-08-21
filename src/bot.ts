@@ -51,10 +51,10 @@ client.on('messageCreate', async message => {
           return;
       }
       let channel:any = message.channel;
-      if(channel.name === "obstacles") {
+      if(channel.name === "demo") {
         let openAIbot = commands["chat"].openAI;
         let chat = message.content.trim();
-        let response = await openAIbot.parseMessage(chat);
+        let response = await openAIbot.parseMessage(message.author.id,chat);
         let currPart="";
         let msg = await message.channel.send(`Obstacles is thinking..`);
         for await (const part of response) {
@@ -70,6 +70,7 @@ client.on('messageCreate', async message => {
           }
         }
         await msg.edit(`${currPart}`);
+        await openAIbot.updateContext(message.author.id,{role: 'assistant',content:currPart});
         return;
       }
   }

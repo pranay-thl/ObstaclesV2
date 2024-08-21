@@ -23,7 +23,8 @@ export class Chat implements CommandInterface {
       try{
         await interaction.deferReply({ephemeral: true});
         let chat = interaction.options.getString("text").trim();
-        let response = await this._openAIbot.parseMessage(chat);
+        const userId = interaction.user.id;
+        let response = await this._openAIbot.parseMessage(userId,chat);
         let currPart="";
         for await (const part of response) {
           let partResponse = part.choices[0]?.delta?.content || '';
@@ -38,6 +39,7 @@ export class Chat implements CommandInterface {
           }
         }
         await interaction.editReply({content: `${currPart}`, ephemeral: true});
+        await this._openAIbot.updateContext(userId,{role:'assistant', content: currPart});
         return;
         //return await interaction.editReply({content: `${response}`, ephemeral: true});
       }
