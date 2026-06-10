@@ -26,7 +26,7 @@ export class OpenAIBot {
             this.updateContext(userId,{role: 'user', content: message});
             const chatStream = await this.openAIClient.chat.completions.create({
                 messages: this.userContext[userId],
-                model: 'gpt-4o',
+                model: 'gpt-5-mini',
                 stream: true
             });
             return chatStream;
